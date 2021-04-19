@@ -1,18 +1,13 @@
 ---
 layout: page
-title: About
+title: About Me
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Hello! My name is Sam Eure and welcome to my site. I'm a recent graduate of Duke University where I studied Math/Statistics/CS and will be starting my PhD in Statistics at the University of Washington this Fall. 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+I enjoy working on analytically complicated problems whose answers may help better society. One project I was heavily involved in as an undergraduate was the [Quantifying Gerrymandering Project](https://sites.duke.edu/quantifyinggerrymandering/quantifying-gerrymandering/) where I aided in the development statistical methods for identifying [gerrymandering](https://en.wikipedia.org/wiki/Gerrymandering). 
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Although I have spent the last 6 years living, studying, and working in Durham, NC, I am originally from the Outer Banks (Kitty Hawk) of NC where I still enjoy surfing, kayaking, and spearfishing. Other interests of mine include rock climbing, hiking through, playing the guitar, reading, and spending time with friends. 
 
 
-[jekyll-organization]: https://github.com/jekyll
