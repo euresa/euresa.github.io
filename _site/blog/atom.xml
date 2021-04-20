@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+	<title>Andrea's Blog</title>
+	<link href="http://euresa.github.io/blog/atom.xml" rel="self"/>
+	<link href="http://euresa.github.io/blog"/>
+	<updated>2021-04-20T13:38:32-04:00</updated>
+	<id>http://euresa.github.io/blog</id>
+	<author>
+		<name>Sam Eure</name>
+		<email>eure.samuel@gmail.com</email>
+	</author>
+
+	
+		<entry>
+			<title>My First Post</title>
+			<link href="http://euresa.github.io/blog/2021/04/19/My-First-Post"/>
+			<updated>2021-04-19T00:00:00-04:00</updated>
+			<id>http://euresa.github.io/blog/2021/04/19/My-First-Post</id>
+			<content type="html">&lt;h1 id=&quot;my-first-post&quot;&gt;My First Post&lt;/h1&gt;
+
+&lt;p&gt;At some point I hope to put some smaller projects or thoughts down here.&lt;/p&gt;
+</content>
+		</entry>
+	
+
+</feed>
