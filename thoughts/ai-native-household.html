@@ -80,6 +80,18 @@ h1 {
 .post-body p { font-size: 0.975rem; line-height: 1.85; }
 .post-body p + p { margin-top: 1.2em; }
 
+.post-body h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-top: 2.2em;
+}
+.post-body ul { margin-top: 0.9em; padding-left: 1.3em; }
+.post-body li { font-size: 0.975rem; line-height: 1.85; }
+.post-body li + li { margin-top: 0.9em; }
+.post-body li::marker { color: var(--text-2); }
 .post-body code { font-family: ui-monospace, Menlo, monospace; font-size: 0.85em; background: var(--bg-subtle); padding: 0.1em 0.35em; border-radius: 4px; }
 
 .diagram { margin: 2.4em 0; }
@@ -382,6 +394,11 @@ h1 {
       <figcaption>How the four of us interact.</figcaption>
     </figure>
     <p>I've promoted it to a $12/month, 1 CPU, 2GB memory VPS on <a href="https://www.digitalocean.com/products/droplets" target="_blank" rel="noopener">DigitalOcean</a> so it can run 24/7, and I have my Claude Code session on my MacBook Air SSH into it for management. I could totally get a small Raspberry Pi to keep on 24/7 in my apartment and run this on, but I really don't want to make that kind of upfront investment right now given how quickly things continue to change in the AI world. For similar reasons, I'd rather not buy something like a Mac mini and run a smaller open weight LLM to make token usage free: I can already just use NVIDIA's free models, and the upfront cost of a new computer doesn't make sense to me if I only need to pay about $12/month in hosting and maybe $10/month in compute.</p>
+    <h2>Lessons Learned</h2>
+    <ul>
+      <li>I originally tried to create the LLM wiki vault with Hermes powered by OpenRouter models, but I often got greedy and kept creeping up which model and effort levels I was using until I ended up spending a lot more money than I would have had I just used something like a Claude Code Pro (or Max) one-month subscription for the work. This is what motivated me to build the "Tell Claude" flow into the Hermes agent, for when deeper research or automation flows need to be set up on the VPS agent via Discord communication.</li>
+      <li>I should have spent more time learning about different ways to design the LLM wiki's structure and integration flow. There are a lot of decisions to be made around how new information is inserted into the vault, what kind of information deserves to be in our household vault, and what information can be left out with just links to more detailed information. I think vault management and design will continue to need tweaking as I learn what is working well and what is not when it comes to integrating household-specific information into conversations.</li>
+    </ul>
     <p class="credit">Icons from <a href="https://simpleicons.org" target="_blank" rel="noopener">Simple Icons</a> (CC0) and <a href="https://selfh.st/icons/" target="_blank" rel="noopener">selfh.st/icons</a> (CC BY 4.0).</p>
   </div>
 
