@@ -1,0 +1,258 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Towards an AI-Native Household — Sam Eure</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23181715'/%3E%3Ctext x='50%25' y='50%25' font-family='Georgia%2C serif' font-size='13' font-weight='700' fill='%23F5F4F1' text-anchor='middle' dominant-baseline='central' letter-spacing='0.5'%3ESE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #F5F4F1;
+  --bg-subtle: #EDECE9;
+  --text:      #181715;
+  --text-2:    #736F6B;
+  --border:    #E0DDD8;
+  --accent:    #1E4D8C;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #141312;
+    --bg-subtle: #1F1E1C;
+    --text:      #E8E6E1;
+    --text-2:    #9A958E;
+    --border:    #2C2A27;
+    --accent:    #7BA3E0;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.7;
+  padding-inline: 16px;
+}
+
+a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border); transition: text-decoration-color 0.2s; }
+a:hover { text-decoration-color: var(--accent); }
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding-block: 72px 80px;
+}
+
+.back {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  text-decoration: none;
+  margin-bottom: 36px;
+}
+.back:hover { color: var(--text); }
+
+h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.3rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  text-wrap: balance;
+}
+
+.post-date {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  font-style: italic;
+  margin-bottom: 36px;
+  display: block;
+}
+
+.post-body p { font-size: 0.975rem; line-height: 1.85; }
+.post-body p + p { margin-top: 1.2em; }
+
+.diagram { margin: 2.4em 0; }
+.diagram svg { display: block; width: 100%; height: auto; font-family: 'Lora', Georgia, serif; }
+.diagram figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 0.73rem;
+  font-style: italic;
+  color: var(--text-2);
+}
+.diagram + p { margin-top: 0; }
+.d-box { fill: var(--bg-subtle); stroke: var(--text-2); stroke-opacity: 0.45; stroke-width: 1.2; }
+.d-hub { fill: var(--bg-subtle); stroke: var(--accent); stroke-width: 1.8; }
+.d-zone { fill: none; stroke: var(--text-2); stroke-opacity: 0.55; stroke-width: 1.2; stroke-dasharray: 5 5; }
+.d-group { fill: none; stroke: var(--text-2); stroke-opacity: 0.4; stroke-width: 1.2; }
+.d-line { fill: none; stroke: var(--text-2); stroke-width: 1.4; }
+.d-head { fill: var(--text-2); }
+.d-title { fill: var(--text); font-size: 17px; font-weight: 500; }
+.d-sub { fill: var(--text-2); font-size: 13px; }
+.d-tag { fill: var(--text-2); font-size: 13px; font-style: italic; }
+.d-zone-label { fill: var(--text-2); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.footer {
+  margin-top: 60px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--text-2);
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .page { padding-block: 48px 64px; }
+  h1 { font-size: 1.9rem; }
+}
+
+.diagram .d-narrow { display: none; }
+@media (max-width: 600px) {
+  .diagram .d-wide { display: none; }
+  .diagram .d-narrow { display: block; }
+}
+</style>
+
+<div class="page">
+  <a class="back" href="../index.html">&larr; Sam Eure</a>
+
+  <h1>Towards an AI-Native Household</h1>
+  <span class="post-date">October 2026</span>
+
+  <div class="post-body">
+    <p>Most of my attention at work this year has gone toward figuring out how to build software with AI, and at some point it started to feel a bit odd that none of it was making it home. My wife and I deal with the same pile of stuff every household does: email, paperwork, shared documents, appointments, and a long list of small things nobody ever writes down. We'd like to bring AI into our household the way I've been bringing it into my work. I also think that getting good at working with AI systems is going to matter for basically everyone over the next few years, and the best way I know to get better at something is to use it for real things every day.</p>
+    <p>The first thing we needed was a good memory. We've put a lot of work into building a household "vault," a second brain built on Obsidian and the LLM wiki pattern that <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener">Andrej Karpathy outlined</a>. The idea is that instead of having an AI re-read a pile of raw documents every time you ask it something, you have it build and maintain a wiki of linked markdown pages that gets better over time. To get ours started, we had agents go through our past text messages and Google Voice conversations, our email, and the documents we had scattered across Google Docs and Notion, and distill all of it into a set of pages about us. It took more work than I expected, mostly deciding what belonged and what didn't, but we now have a source of truth that both of us (and our agents) can read.</p>
+    <p>On top of the vault is the assistant itself. We use Hermes, an open source agent from Nous Research, running on a small DigitalOcean server so that it keeps working when my laptop is closed. We talk to it through Discord, which turned out to be a great interface because it's already on both of our phones and feels a lot like texting a very capable assistant.</p>
+    <p>Hermes can work with our Gmail, Google Docs and Sheets, and Notion, and it has a read-only copy of the vault that syncs from an encrypted backup on GitHub. For models it goes through OpenRouter, and we mostly use very cheap ones, since most of what we ask isn't that hard. When something needs real research, Hermes has an instruction to hand it off to Claude Code and report back.</p>
+    <figure class="diagram">
+      <svg class="d-wide" viewBox="0 0 680 392" role="img" aria-labelledby="diagram-title diagram-desc">
+        <title id="diagram-title">How our household talks to its AI assistant</title>
+        <desc id="diagram-desc">My wife and I message Hermes through Discord. Hermes runs on a DigitalOcean server, reads our Google accounts, Notion and the vault, uses OpenRouter for models, and hands heavier research to Claude Code.</desc>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path class="d-head" d="M1 1.5 L9 5 L1 8.5 Z"/>
+          </marker>
+        </defs>
+
+        <!-- people -->
+        <rect class="d-box" x="150" y="14" width="120" height="46" rx="12"/>
+        <text class="d-title" x="210" y="43" text-anchor="middle">Me</text>
+        <rect class="d-box" x="410" y="14" width="120" height="46" rx="12"/>
+        <text class="d-title" x="470" y="43" text-anchor="middle">My wife</text>
+
+        <!-- people to discord -->
+        <path class="d-line" d="M222 62 L296 102" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <path class="d-line" d="M458 62 L384 102" marker-start="url(#arr)" marker-end="url(#arr)"/>
+
+        <!-- discord -->
+        <rect class="d-box" x="240" y="104" width="200" height="48" rx="12"/>
+        <text class="d-title" x="340" y="134" text-anchor="middle">Discord</text>
+
+        <!-- discord to hermes -->
+        <path class="d-line" d="M308 154 L206 222" marker-start="url(#arr)" marker-end="url(#arr)"/>
+
+        <!-- server zone -->
+        <rect class="d-zone" x="24" y="190" width="316" height="104" rx="16"/>
+        <text class="d-zone-label" x="42" y="212">DigitalOcean server</text>
+        <rect class="d-hub" x="82" y="226" width="200" height="50" rx="12"/>
+        <text class="d-title" x="182" y="248" text-anchor="middle">Hermes</text>
+        <text class="d-sub" x="182" y="266" text-anchor="middle">our assistant</text>
+
+        <!-- hermes to claude code -->
+        <path class="d-line" d="M284 251 L496 251" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text class="d-tag" x="410" y="240" text-anchor="middle">heavy research</text>
+        <rect class="d-box" x="500" y="226" width="156" height="50" rx="12"/>
+        <text class="d-title" x="578" y="248" text-anchor="middle">Claude Code</text>
+        <text class="d-sub" x="578" y="266" text-anchor="middle">deeper thinking</text>
+
+        <!-- hermes to services -->
+        <path class="d-line" d="M182 278 L182 312"/>
+        <path class="d-line" d="M97 312 L583 312"/>
+        <path class="d-line" d="M97 312 L97 340" marker-end="url(#arr)"/>
+        <path class="d-line" d="M259 312 L259 340" marker-end="url(#arr)"/>
+        <path class="d-line" d="M421 312 L421 340" marker-end="url(#arr)"/>
+        <path class="d-line" d="M583 312 L583 340" marker-end="url(#arr)"/>
+
+        <!-- services -->
+        <rect class="d-box" x="24" y="342" width="146" height="46" rx="10"/>
+        <text class="d-title" x="97" y="361" text-anchor="middle" style="font-size:15px">Google</text>
+        <text class="d-sub" x="97" y="379" text-anchor="middle">Gmail, Docs, Sheets</text>
+        <rect class="d-box" x="186" y="342" width="146" height="46" rx="10"/>
+        <text class="d-title" x="259" y="361" text-anchor="middle" style="font-size:15px">Notion</text>
+        <text class="d-sub" x="259" y="379" text-anchor="middle">pages and docs</text>
+        <rect class="d-box" x="348" y="342" width="146" height="46" rx="10"/>
+        <text class="d-title" x="421" y="361" text-anchor="middle" style="font-size:15px">The vault</text>
+        <text class="d-sub" x="421" y="379" text-anchor="middle">backed up on GitHub</text>
+        <rect class="d-box" x="510" y="342" width="146" height="46" rx="10"/>
+        <text class="d-title" x="583" y="361" text-anchor="middle" style="font-size:15px">OpenRouter</text>
+        <text class="d-sub" x="583" y="379" text-anchor="middle">cheap models</text>
+      </svg>
+
+      <svg class="d-narrow" viewBox="0 0 360 440" role="img" aria-label="My wife and I message Hermes through Discord. Hermes runs on a DigitalOcean server, hands heavier research to Claude Code, and connects to Google, Notion, the vault and OpenRouter.">
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path class="d-head" d="M1 1.5 L9 5 L1 8.5 Z"/>
+          </marker>
+        </defs>
+
+        <rect class="d-box" x="30" y="10" width="110" height="42" rx="12"/>
+        <text class="d-title" x="85" y="37" text-anchor="middle">Me</text>
+        <rect class="d-box" x="220" y="10" width="110" height="42" rx="12"/>
+        <text class="d-title" x="275" y="37" text-anchor="middle">My wife</text>
+
+        <path class="d-line" d="M95 54 L150 94" marker-start="url(#arr2)" marker-end="url(#arr2)"/>
+        <path class="d-line" d="M265 54 L210 94" marker-start="url(#arr2)" marker-end="url(#arr2)"/>
+
+        <rect class="d-box" x="110" y="96" width="140" height="44" rx="12"/>
+        <text class="d-title" x="180" y="124" text-anchor="middle">Discord</text>
+
+        <path class="d-line" d="M158 142 L158 202" marker-start="url(#arr2)" marker-end="url(#arr2)"/>
+
+        <rect class="d-zone" x="8" y="168" width="170" height="108" rx="14"/>
+        <text class="d-zone-label" x="20" y="188" style="font-size:9px">DigitalOcean server</text>
+        <rect class="d-hub" x="22" y="204" width="140" height="52" rx="12"/>
+        <text class="d-title" x="92" y="227" text-anchor="middle">Hermes</text>
+        <text class="d-sub" x="92" y="245" text-anchor="middle" style="font-size:12px">our assistant</text>
+
+        <path class="d-line" d="M164 230 L250 230" marker-start="url(#arr2)" marker-end="url(#arr2)"/>
+        <text class="d-tag" x="214" y="251" text-anchor="middle" style="font-size:12px">heavy</text>
+        <text class="d-tag" x="214" y="265" text-anchor="middle" style="font-size:12px">research</text>
+        <rect class="d-box" x="252" y="204" width="100" height="52" rx="12"/>
+        <text class="d-title" x="302" y="227" text-anchor="middle" style="font-size:15px">Claude Code</text>
+        <text class="d-sub" x="302" y="245" text-anchor="middle" style="font-size:12px">deeper thinking</text>
+
+        <path class="d-line" d="M92 258 L92 302" marker-end="url(#arr2)"/>
+        <rect class="d-group" x="8" y="304" width="344" height="124" rx="14"/>
+        <text class="d-zone-label" x="24" y="324">Connected to</text>
+
+        <rect class="d-box" x="20" y="336" width="158" height="38" rx="9"/>
+        <text class="d-title" x="99" y="352" text-anchor="middle" style="font-size:14px">Google</text>
+        <text class="d-sub" x="99" y="367" text-anchor="middle" style="font-size:12px">Gmail, Docs, Sheets</text>
+        <rect class="d-box" x="182" y="336" width="158" height="38" rx="9"/>
+        <text class="d-title" x="261" y="352" text-anchor="middle" style="font-size:14px">Notion</text>
+        <text class="d-sub" x="261" y="367" text-anchor="middle" style="font-size:12px">pages and docs</text>
+        <rect class="d-box" x="20" y="382" width="158" height="38" rx="9"/>
+        <text class="d-title" x="99" y="398" text-anchor="middle" style="font-size:14px">The vault</text>
+        <text class="d-sub" x="99" y="413" text-anchor="middle" style="font-size:12px">backed up on GitHub</text>
+        <rect class="d-box" x="182" y="382" width="158" height="38" rx="9"/>
+        <text class="d-title" x="261" y="398" text-anchor="middle" style="font-size:14px">OpenRouter</text>
+        <text class="d-sub" x="261" y="413" text-anchor="middle" style="font-size:12px">cheap models</text>
+      </svg>
+      <figcaption>How the four of us interact.</figcaption>
+    </figure>
+    <p>So far it's working pretty well. We did think about getting dedicated hardware for it, either a Mac mini or something like an <a href="https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/" target="_blank" rel="noopener">NVIDIA Jetson Orin</a>, but we expect to experiment and change things quickly over the next few months. Spending money up front on hardware doesn't make much sense while everything is moving this fast, and a small cloud server is cheap and easy to throw away. If we ever get more concerned about privacy or how much we trust the model providers, hosting our own open-weight models is probably where we'd go next, and that's when the hardware would start to make sense.</p>
+  </div>
+
+  <footer class="footer">
+    <span>Sam Eure</span>
+  </footer>
+</div>
